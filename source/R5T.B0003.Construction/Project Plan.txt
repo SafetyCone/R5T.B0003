@@ -1,0 +1,3 @@
+R5T.B0003.Construction - Construction project for NamespacedTypeName and related bases..
+
+GOALS:
