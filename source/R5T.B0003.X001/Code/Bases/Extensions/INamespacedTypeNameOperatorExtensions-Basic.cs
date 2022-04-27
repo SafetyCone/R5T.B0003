@@ -13,6 +13,19 @@ namespace System
 {
     public static partial class INamespacedTypeNameOperatorExtensions
     {
+        public static string GetDescribedNamespacedTypeName(this INamespacedTypeNameOperator _,
+            string namespacedTypeName)
+        {
+            var output = _.GetTypeThenNamespacedTypeName(namespacedTypeName);
+            return output;
+        }
+
+        public static string GetNamespacedTypeName<T>(this INamespacedTypeNameOperator _)
+        {
+            var output = typeof(T).FullName;
+            return output;
+        }
+
         public static string GetNamespacedTypeName(this INamespacedTypeNameOperator _,
             string namespaceName,
             string typeName)
@@ -84,6 +97,15 @@ namespace System
 
             // Everything after the last namespace name token separator before the type name, is the type name.
             var output = namespacedTypeName[(index + 1)..];
+            return output;
+        }
+
+        public static string GetTypeThenNamespacedTypeName(this INamespacedTypeNameOperator _,
+            string namespacedTypeName)
+        {
+            var typeName = _.GetTypeName(namespacedTypeName);
+
+            var output = $"{typeName} ({namespacedTypeName})";
             return output;
         }
 
